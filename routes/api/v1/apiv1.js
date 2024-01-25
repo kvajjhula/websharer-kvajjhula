@@ -52,13 +52,6 @@ router.get('/urls/preview/', async function (req, res, next) {
         titleTag = pageTitle;
       }
     }
-
-    console.log(titleTag)
-    console.log(descTag)
-    console.log(urlTag)
-    console.log(imgTag)
-    console.log(keywords)
-
     res.type('html')
     res.send(
       `

@@ -1,5 +1,12 @@
-URL that returns the creative component metadata (keywords meta tag)
+# Website Sharer
 
-https://www.youtube.com/watch?v=_RFBrasvNoA
+(Link on Render)[https://info441-websharer-kriti.onrender.com/]
 
-Visual improvements: I increased the thickness of the border, padding, added a margin. This makes the content more readable.
+## Creative Component
+I added the keyword meta tag that can be seen when using the following link:
+(see link)[https://www.youtube.com/watch?v=_RFBrasvNoA]
+
+
+## Visual Improvements
+I increased the thickness of the border, padding, added a margin. This makes the content more readable.
+
