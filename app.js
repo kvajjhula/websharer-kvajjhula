@@ -3,7 +3,8 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import apiv1Router from './routes/api/v1/apiv1.js'
+// import apiv1Router from './routes/api/v1/apiv1.js'
+import apiv2Router from './routes/api/v2/apiv2.js'
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -26,6 +27,8 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use('/api/v1', apiv1Router);
+app.use('/api/v2', apiv2Router);
+// app.use('/api/v1', apiv1Router);
+
 
 export default app;

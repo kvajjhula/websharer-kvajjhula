@@ -13,7 +13,8 @@ console.log("successfully connected to mongodb")
 const postSchema = new mongoose.Schema({
     url: String,
     description: String,
-    created_date: Date
+    created_date: Date,
+    name: String
 })
 
 models.Post = mongoose.model('Post', postSchema)

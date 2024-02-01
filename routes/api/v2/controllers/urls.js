@@ -4,7 +4,7 @@ var router = express.Router();
 
 import getURLPreview from '../utils/urlPreviews.js';
 
-app.get('/preview/', async (req, res, next) => {
+router.get('/preview/', async (req, res, next) => {
     const inputUrl = req.query.url
     try {
         const previewHTML = await getURLPreview(inputUrl)

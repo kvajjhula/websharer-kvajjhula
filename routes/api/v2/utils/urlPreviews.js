@@ -2,12 +2,8 @@ import fetch from 'node-fetch';
 import parser from 'node-html-parser';
 
 async function getURLPreview(url){
-  // TODO: Copy from your code for making url previews in A2 to make this 
-  // a function that takes a url and returns an html string with a preview of that html
-
-  let inputURL = req.query.url
   try {
-    const response = await fetch(inputURL)
+    const response = await fetch(url)
     const body = await response.text()
     const htmlPage = parser.parse(body);
 
@@ -38,27 +34,26 @@ async function getURLPreview(url){
     }
 
     if (urlTag === "" || urlTag === undefined) {
-      urlTag = "<a href=\"" + inputURL + "\">" + inputURL + "</a>"
+      urlTag = "<a href=\"" + url + "\">" + url + "</a>"
     }
 
     if (titleTag === "" || titleTag === undefined) {
       if (pageTitle === "" || pageTitle === undefined) {
-        titleTag = inputURL
+        titleTag = url
       } else {
         titleTag = pageTitle;
       }
     }
-    res.type('html')
-    res.send(
+    return(
       `
       <html>
       <body>
-          <div style="max-width: 500px; border: solid 5px; padding: 50px; margin: 50px; text-align: center;"> 
+          <div style="max-width: 500px; border: solid 5px; padding: 10px; margin: 10px; text-align: center;"> 
             <a href=${urlTag}>
                 <p><strong> 
                     ${titleTag}
                 </strong></p>
-                <img src=${imgTag} style="max-height: 200px; max-width: 270px;">
+                <img src=${imgTag} style="max-height: 200px; max-width: 250px;">
             </a>
             ${descTag ? `<p>${descTag}</p>` : ''} 
             ${keywords ? `<p>${keywords}</p>` : ''} 
@@ -70,7 +65,6 @@ async function getURLPreview(url){
     );
   } catch (error) {
     console.log(error)
-    res.status(500).send("Error: " + error)
   }
 
 }
