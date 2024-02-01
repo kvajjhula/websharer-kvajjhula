@@ -4,8 +4,7 @@ let models = {}
 
 console.log("connecting to mongodb")
 
-await mongoose.connect(await mongoose.connect("mongodb+srv://kriti:gOcHX5m4ktsipxaw@cluster0.0h9jp2a.mongodb.net/websharer") 
-)
+mongoose.connect("mongodb+srv://kriti:gOcHX5m4ktsipxaw@cluster0.0h9jp2a.mongodb.net/websharer") 
 
 console.log("successfully connected to mongodb")
 
@@ -19,6 +18,8 @@ const postSchema = new mongoose.Schema({
 
 models.Post = mongoose.model('Post', postSchema)
 console.log("mongoose models created")
+
+export default models;
 
 
 
