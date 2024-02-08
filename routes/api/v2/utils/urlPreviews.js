@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import parser from 'node-html-parser';
+import sanitizeHtml from 'sanitize-html'
 
 async function getURLPreview(url){
   try {
@@ -19,15 +20,15 @@ async function getURLPreview(url){
 
     for (let i = 0; i < metaTags.length; i++) {
       if (metaTags[i].rawAttrs.startsWith("property=\"og:title")) {
-        titleTag = metaTags[i].getAttribute('content') + "";
+        titleTag = sanitizeHtml(metaTags[i].getAttribute('content') + "");
       } else if (metaTags[i].rawAttrs.startsWith("property=\"og:description")) {
-        descTag = metaTags[i].getAttribute('content') + "";
+        descTag = sanitizeHtml(metaTags[i].getAttribute('content') + "");
       } else if (metaTags[i].rawAttrs.startsWith("property=\"og:url")) {
-        urlTag = metaTags[i].getAttribute('content') + "";
+        urlTag = sanitizeHtml(metaTags[i].getAttribute('content') + "");
       } else if (metaTags[i].rawAttrs.startsWith("property=\"og:image\"")) {
-        imgTag = metaTags[i].getAttribute('content') + "";
+        imgTag = sanitizeHtml(metaTags[i].getAttribute('content') + "");
       } else if (metaTags[i].rawAttrs.startsWith("name=\"keywords")) {
-        keywords = metaTags[i].getAttribute('content') + "";
+        keywords = sanitizeHtml(metaTags[i].getAttribute('content') + "");
       } else {
         continue
       }
@@ -44,12 +45,14 @@ async function getURLPreview(url){
         titleTag = pageTitle;
       }
     }
+
+
     return(
       `
       <html>
       <body>
           <div style="max-width: 500px; border: solid 5px; padding: 10px; margin: 10px; text-align: center;"> 
-            <a href=${urlTag}>
+            <a href=${sanitizeHtml(urlTag)}>
                 <p><strong> 
                     ${titleTag}
                 </strong></p>

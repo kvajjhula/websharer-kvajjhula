@@ -4,7 +4,7 @@ let models = {}
 
 console.log("connecting to mongodb")
 
-mongoose.connect("mongodb+srv://kriti:gOcHX5m4ktsipxaw@cluster0.0h9jp2a.mongodb.net/websharer") 
+await mongoose.connect("mongodb+srv://kriti:gzvOZ0EDVXrtDrzq@cluster0.0h9jp2a.mongodb.net/websharer") 
 
 console.log("successfully connected to mongodb")
 
