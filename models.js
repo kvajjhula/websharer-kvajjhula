@@ -4,7 +4,7 @@ let models = {}
 
 console.log("connecting to mongodb")
 
-await mongoose.connect("mongodb+srv://kriti:gzvOZ0EDVXrtDrzq@cluster0.0h9jp2a.mongodb.net/websharer") 
+await mongoose.connect("mongodb+srv://kriti:zLL5lgKlI9LGu23d@cluster0.0h9jp2a.mongodb.net/store")
 
 console.log("successfully connected to mongodb")
 
@@ -14,7 +14,8 @@ const postSchema = new mongoose.Schema({
     url: String,
     description: String,
     created_date: Date,
-    name: String
+    name: String,
+    username: String
 })
 
 models.Post = mongoose.model('Post', postSchema)
