@@ -31,14 +31,18 @@ router.post('/', async (req, res, next) => {
 })
 
 router.get('/', async (req, res, next) => {
+    let query = {};
+    if (req.query.username) {
+        query.username = req.query.username;
+    }
     try {
-        let allPosts = await req.models.Post.find()
+        let allPosts = await req.models.Post.find(query)
 
         let postsWithPreviews = await Promise.all(
-            allPosts.map(async ({ url, description, name }) => {
+            allPosts.map(async ({ url, description, name, username }) => {
                 try {
                     const htmlPreview = await getURLPreview(url)
-                    return { description, htmlPreview, name }
+                    return { description, htmlPreview, name, username }
                 } catch (error) {
                     console.log(error)
                 }

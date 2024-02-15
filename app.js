@@ -12,13 +12,14 @@ import WebAppAuthProvider from 'msal-node-wrapper'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-
 const authConfig = {
     auth: {
-        clientId:  "15decf37-f09f-47c0-b050-c3876ca075cc",
-        authority: "f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
-    	clientSecret:  "mHq8Q~TH1TOzkmW-BFjZhBMo6_nCkx9HYtgvtcY4",
-        redirectUri: "websharer.kritivajjhula.me/redirect", //note: you can explicitly make this "localhost:3000/redirect" or "examplesite.me/redirect"
+        clientId: "15decf37-f09f-47c0-b050-c3876ca075cc",
+        authority: "https://login.microsoftonline.com/f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
+        clientSecret: "mHq8Q~TH1TOzkmW-BFjZhBMo6_nCkx9HYtgvtcY4",
+        // redirectUri: "websharer.kritivajjhula.me/redirect", //note: you can explicitly make this "localhost:3000/redirect" or "examplesite.me/redirect"
+        redirectUri: "/redirect", //note: you can explicitly make this "localhost:3000/redirect" or "examplesite.me/redirect"
+
     },
     system: {
         loggerOptions: {
@@ -43,7 +44,7 @@ const oneDay = 1000 * 60 * 60 * 24
 app.use(sessions({
     secret: "this is some secret key I am making up v45v;lkjgdsal;nwqt49asglkn",
     saveUninitialized: true,
-    cookie: {maxAge: oneDay},
+    cookie: { maxAge: oneDay },
     resave: false
 }))
 
@@ -60,31 +61,30 @@ app.use((req, res, next) => {
 app.use('/api/v3', apiv3Router);
 
 
-app.use((req, res, next) =>{
+app.use((req, res, next) => {
     console.log("session info:", req.session)
     next();
 })
 
 
 app.get(
-	'/signin',
-	(req, res, next) => {
-		return req.authContext.login({
-			postLoginRedirectUri: "/", // redirect here after login
-		})(req, res, next);
-	}
+    '/signin',
+    (req, res, next) => {
+        return req.authContext.login({
+            postLoginRedirectUri: "/", // redirect here after login
+        })(req, res, next);
+    }
 );
 
 app.get(
-	'/signout',
-	(req, res, next) => {
-		return req.authContext.logout({
-			postLogoutRedirectUri: "/", // redirect here after logout
-		})(req, res, next);
-	}
+    '/signout',
+    (req, res, next) => {
+        return req.authContext.logout({
+            postLogoutRedirectUri: "/", // redirect here after logout
+        })(req, res, next);
+    }
 );
 
 app.use(authProvider.interactionErrorHandler());
-
 
 export default app;
