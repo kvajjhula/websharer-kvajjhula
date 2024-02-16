@@ -19,7 +19,7 @@ const authConfig = {
         clientSecret: "mHq8Q~TH1TOzkmW-BFjZhBMo6_nCkx9HYtgvtcY4",
         // redirectUri: "websharer.kritivajjhula.me/redirect", //note: you can explicitly make this "localhost:3000/redirect" or "examplesite.me/redirect"
         // redirectUri: "/redirect" //note: you can explicitly make this "localhost:3000/redirect" or "examplesite.me/redirect"
-        redirectUri: "https://websharer.kritivajjhula.me/redirect"
+        redirectUri: "https://websharer.kritivajjhula.me/redirect" // maybe add conditional prod url and local url using node env variables later
     },
     system: {
         loggerOptions: {
