@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 
 let models = {}
 
@@ -15,10 +15,23 @@ const postSchema = new mongoose.Schema({
     description: String,
     created_date: Date,
     name: String,
-    username: String
+    username: String,
+    likes: [String]
+})
+
+const commentSchema = new mongoose.Schema({
+    username: String,
+    comment: String,
+    post: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post"
+    },
+    created_date: Date
+
 })
 
 models.Post = mongoose.model('Post', postSchema)
+models.Comment = mongoose.model('Comment', commentSchema)
 console.log("mongoose models created")
 
 export default models;
