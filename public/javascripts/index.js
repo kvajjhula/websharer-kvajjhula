@@ -30,10 +30,9 @@ async function loadPosts(){
                 <br>
                 <button onclick='toggleComments("${postInfo.id}")'>View/Hide comments</button>
                 <div id='comments-box-${postInfo.id}' class="comments-box d-none">
-                    <button onclick='refreshComments("${postInfo.id}")')>refresh comments</button>
+                    <button class="mb-2" onclick='refreshComments("${postInfo.id}")')>Refresh Comments</button>
                     <div id='comments-${postInfo.id}'></div>
                     <div class="new-comment-box ${myIdentity? "": "d-none"}">
-                        New Comment:
                         <textarea type="textbox" id="new-comment-${postInfo.id}"></textarea>
                         <button onclick='postComment("${postInfo.id}")'>Post Comment</button>
                     </div>
