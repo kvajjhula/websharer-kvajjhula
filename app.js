@@ -15,11 +15,11 @@ const __dirname = dirname(__filename);
 const authConfig = {
     auth: {
         clientId: "15decf37-f09f-47c0-b050-c3876ca075cc",
-        authority: "https://login.microsoftonline.com/f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
+        authority: "https://login.microsoftonline.com/common",
         clientSecret: "mHq8Q~TH1TOzkmW-BFjZhBMo6_nCkx9HYtgvtcY4",
-        // redirectUri: "/redirect" //note: you can explicitly make this "localhost:3000/redirect" or "examplesite.me/redirect"
+        redirectUri: "/redirect" //note: you can explicitly make this "localhost:3000/redirect" or "examplesite.me/redirect"
         // redirectUri: "https://websharer.kritivajjhula.me/redirect" // maybe add conditional prod url and local url using node env variables later
-        redirectUri: "https://websharer-kvajjhula.onrender.com/redirect"
+        // redirectUri: "https://websharer-kvajjhula.onrender.com/redirect"
     },
     system: {
         loggerOptions: {

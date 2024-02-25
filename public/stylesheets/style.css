@@ -7,16 +7,18 @@
 .heart_button{
   color:red;
 }
+
 .post {
   background-color: #fff; 
   border: 1px solid #e0e0e0;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  width: calc(33.333% - 20px);
+  /* width: calc(33.333% - 20px); */
   margin-bottom: 20px;
   padding: 15px; 
   box-sizing: border-box;
 }
+
 
 .post h3 {
   color: #333; 
