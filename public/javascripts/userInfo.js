@@ -6,6 +6,31 @@ async function init(){
 async function saveUserInfo(){
     //TODO: do an ajax call to save whatever info you want about the user from the user table
     //see postComment() in the index.js file as an example of how to do this
+    const urlParams = new URLSearchParams(window.location.search);
+    const user = urlParams.get('user');
+
+    let favBuildingOnCampus = document.getElementById("favBuildingInput").value;
+    let favColor = document.getElementById("favColorInput").value;
+    let requestBody = { user: user };
+    if (!favColor && !favBuildingOnCampus) {
+        return;
+    }
+    if (favBuildingOnCampus) requestBody.favBuildingOnCampus = favBuildingOnCampus;
+    if (favColor) requestBody.favColor = favColor;
+    console.log(requestBody)
+    try {
+        await fetchJSON(`api/${apiVersion}/usersInfo`, {
+            method: "POST",
+            body: requestBody
+        })
+    } catch(e) {
+        document.getElementById("inputUserInfoBox").innerText = "Error"
+        throw(e)
+    }
+    favBuildingOnCampus = "";
+    favColor = "";
+    loadUserInfo()
+
 }
 
 async function loadUserInfo(){
@@ -21,6 +46,16 @@ async function loadUserInfo(){
     }
     
     //TODO: do an ajax call to load whatever info you want about the user from the user table
+    let userInfo = await fetchJSON(`api/${apiVersion}/usersInfo?user=${encodeURIComponent(username)}`);
+    console.log(userInfo);
+    let userinfodiv = document.getElementById("user_info_div")
+    let favBuilingDiv = document.createElement('p')
+    favBuilingDiv.innerText = "Favorite Building on Campus: " + userInfo[0].favBuildingOnCampus
+    userinfodiv.append(favBuilingDiv)
+    let favColorDiv = document.createElement('p')
+    favColorDiv.innerText = "Favorite Color: " + userInfo[0].favColor
+    userinfodiv.append(favColorDiv)
+
 
     loadUserInfoPosts(username)
 }

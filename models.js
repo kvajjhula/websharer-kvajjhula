@@ -30,6 +30,12 @@ const commentSchema = new mongoose.Schema({
 
 })
 
+const userInfoSchema = new mongoose.Schema({
+    favBuildingOnCampus: String,
+    favColor: String,
+    user: String
+})
+models.UserInfo = mongoose.model('UserInfo', userInfoSchema);
 models.Post = mongoose.model('Post', postSchema)
 models.Comment = mongoose.model('Comment', commentSchema)
 console.log("mongoose models created")
